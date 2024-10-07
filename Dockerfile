@@ -2,6 +2,7 @@
 FROM dromni/nerfstudio:1.1.3
 
 ARG USER_ID
+USER root
 # Create non root user and setup environment.
 RUN usermod -u ${USER_ID} user
 
