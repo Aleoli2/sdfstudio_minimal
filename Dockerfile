@@ -1,15 +1,11 @@
 # Define base image.
-FROM dromni/nerfstudio:1.1.3
+FROM ghcr.io/nerfstudio-project/nerfstudio:1.1.3
 
-ARG USER_ID
-USER root
-# Create non root user and setup environment.
-RUN usermod -u ${USER_ID} user
-
-# Switch to new user.
-USER user
-COPY * /home/user/nerfstudio/nerfstudio
+COPY nerfstudio/ /usr/local/lib/python3.10/dist-packages/nerfstudio/
 
 WORKDIR /workspace
 
-CMD ns-install-cli && /bin/bash
+RUN apt update && apt install -y python3-pip && \
+    pip install torchtyping==0.1.4
+
+CMD ns-install-cli --mode install && /bin/bash
