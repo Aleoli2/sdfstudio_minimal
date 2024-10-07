@@ -7,7 +7,7 @@ RUN usermod -u ${USER_ID} user
 
 # Switch to new user.
 USER user
-COPY sdfstudio_minimal/* /home/user/nerfstudio/nerfstudio
+COPY * /home/user/nerfstudio/nerfstudio
 
 WORKDIR /workspace
 
