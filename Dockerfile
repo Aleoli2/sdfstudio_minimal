@@ -8,5 +8,6 @@ WORKDIR /workspace
 RUN apt update && apt install -y python3-pip && \
     pip install torchtyping==0.1.4
 
-RUN alias ns-export-mesh="python /usr/local/lib/python3.10/dist-packages/nerfstudio/scripts/export_mesh.py"
-CMD ns-install-cli --mode install && /bin/bash
+CMD ns-install-cli --mode install && \
+    printf "\nalias ns-extract-mesh=\"python /usr/local/lib/python3.10/dist-packages/nerfstudio/scripts/extract_mesh.py\"" >> /root/.bashrc \
+    && /bin/bash
